@@ -111,15 +111,34 @@ class CommandRepository extends ServiceEntityRepository
         ->getQuery()->getResult();
     }
 
-    public function findCommandWithClientsBetweenDates($minDate, $maxDate){
+    public function findCommandWithNewClientsBetweenDates($minDate, $maxDate){
 
         //permet de créer un select * from command
         return $this->createQueryBuilder('c')
         //ajout d'une fct where qui permet de recup command à partir de sa date (: sert à déclarer des variables)
         ->innerJoin('c.user','u')
-        ->where('u. > :date_min')
+        ->where('u.createdAt > :date_min')
+        ->andWhere('u.createdAt < :date_max')
+        ->andWhere('c.createdAt > :date_min')
         ->andWhere('c.createdAt < :date_max')
-        ->andWhere('c.status = 100')
+
+        //remplacer la variable {{date_min}} & {{date_max}} par mes objets dates
+        ->setParameter('date_min', $minDate)
+        ->setParameter('date_max', $maxDate)
+        //permet d'executer la query afin de recup nos entités
+        ->getQuery()->getResult();
+    }
+
+    public function findCommandWithOldClientsBetweenDates($minDate,$maxDate){
+
+        //permet de créer un select * from command
+        return $this->createQueryBuilder('c')
+        //ajout d'une fct where qui permet de recup command à partir de sa date (: sert à déclarer des variables)
+        ->innerJoin('c.user','u')
+        ->where('u.createdAt < :date_min')
+        ->andWhere('c.createdAt > :date_min')
+        ->andWhere('c.createdAt < :date_max')
+        
         //remplacer la variable {{date_min}} & {{date_max}} par mes objets dates
         ->setParameter('date_min', $minDate)
         ->setParameter('date_max', $maxDate)

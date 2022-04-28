@@ -12,6 +12,7 @@ use App\Controller\BasketCountController;
 use App\Controller\CommandCountController;
 use App\Controller\PercentConversionBasketController;
 use App\Controller\PercentConversionCommandController;
+use App\Controller\RecurrenceCommandClientController;
 use App\Controller\TotalAmountCommandController;
 use App\Repository\CommandRepository;
 use Doctrine\Common\Collections\ArrayCollection;

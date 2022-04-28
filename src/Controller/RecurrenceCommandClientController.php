@@ -36,22 +36,23 @@ class RecurrenceCommandClientController extends AbstractController
         dump($maxDate);
 
         //on applique la fonction findCommandsBetweenDates() à nos objets date
-        // $commandEntities = $this->commandRepository->findAverageBasketAmountBetweenDates($minDate, $maxDate);
+        $commandNewClientsEntities = $this->commandRepository->findCommandWithNewClientsBetweenDates($minDate, $maxDate);
+        $numberOfCommandsNewClientsFound = count($commandNewClientsEntities);
+        
+        $commandOldClientsEntities = $this->commandRepository->findCommandWithOldClientsBetweenDates($minDate, $maxDate);
+        $numberOfCommandsOldClientsFound = count($commandOldClientsEntities);
 
-        // $numberOfEntitiesFound = count($commandEntities);
+        dump($commandNewClientsEntities);
+        dump($numberOfCommandsNewClientsFound);//return 8 du 2020-01-01 au 201-01-01
+        dump($commandOldClientsEntities);
+        dump($numberOfCommandsOldClientsFound);//return 2 du 2020-01-01 au 201-01-01
 
-        // $incrementTotalPrice = 0;
-
-        // foreach($commandEntities as $commandEntity){
-            
-        //     $incrementTotalPrice += $commandEntity->getTotalPrice();
-        // }
-
-        // $result = $incrementTotalPrice / $numberOfEntitiesFound;
-
-        // dump($result);
-        // //on dump $visitEntities que l'on retrouve dans profiller =>last10
-        // // dump($commandEntities);
-        // return $this->json($result);
+        if ($numberOfCommandsOldClientsFound > 0) {
+            $result = (($numberOfCommandsNewClientsFound - $numberOfCommandsOldClientsFound) / $numberOfCommandsOldClientsFound) * 100;
+        }else{
+            $result = 'Nous n\'avons pas de commandes associées aux anciens clients sur la période donnée';
+        }
+    
+        return $this->json($result);
     }
 }

@@ -50,9 +50,9 @@ class RecurrenceCommandClientController extends AbstractController
         if ($numberOfCommandsOldClientsFound > 0) {
             $result = (($numberOfCommandsNewClientsFound - $numberOfCommandsOldClientsFound) / $numberOfCommandsOldClientsFound) * 100;
         }else{
-            $result = 'Nous n\'avons pas de commandes associées aux anciens clients sur la période donnée';
+            $result = "Erreur : Division par zéro";
         }
     
-        return $this->json($result);
+        return $this->json(['data' => $result]);
     }
 }

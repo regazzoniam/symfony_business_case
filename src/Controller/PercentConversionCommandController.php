@@ -41,10 +41,14 @@ class PercentConversionCommandController extends AbstractController
         $numberOfCommandFound = count($commandEntities);
         $numberOfBasketFound = count($basketEntities);
 
-        $result = ($numberOfBasketFound * 100)/ $numberOfCommandFound;
+        if($numberOfCommandFound != 0){
+            $result = ($numberOfBasketFound * 100)/ $numberOfCommandFound;
+        }else{
+            $result = "Erreur : Division par zéro";
+        }
 
         // //on dump $visitEntities que l'on retrouve dans profiller =>last10
         dump($result);
-        return $this->json($result);
+        return $this->json(['data' => $result]);
     }
 }

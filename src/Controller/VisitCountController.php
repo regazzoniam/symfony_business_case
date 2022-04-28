@@ -40,6 +40,6 @@ class VisitCountController extends AbstractController
 
         //on dump $visitEntities que l'on retrouve dans profiller =>last10
         dump($visitEntities);
-        return $this->json($numberOfEntitiesFound);
+        return $this->json(['data' => $numberOfEntitiesFound]);
     }
 }

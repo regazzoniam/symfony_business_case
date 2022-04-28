@@ -40,6 +40,6 @@ class BasketCountController extends AbstractController
 
         //on dump $visitEntities que l'on retrouve dans profiller =>last10
         dump($commandEntities);
-        return $this->json($numberOfEntitiesFound);
+        return $this->json(['data' => $numberOfEntitiesFound]);
     }
 }

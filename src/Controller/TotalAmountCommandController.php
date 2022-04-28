@@ -43,8 +43,7 @@ class TotalAmountCommandController extends AbstractController
         }
 
         dump($incrementTotalPrice);
-        //on dump $visitEntities que l'on retrouve dans profiller =>last10
-        // dump($commandEntities);
-        return $this->json($incrementTotalPrice);
+
+        return $this->json(['data' => $incrementTotalPrice]);
     }
 }

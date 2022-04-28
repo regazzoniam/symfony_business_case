@@ -46,12 +46,14 @@ class AverageBasketAmountController extends AbstractController
             
             $incrementTotalPrice += $commandEntity->getTotalPrice();
         }
-
-        $result = $incrementTotalPrice / $numberOfEntitiesFound;
+        if ($numberOfEntitiesFound != 0) {
+            $result = $incrementTotalPrice / $numberOfEntitiesFound;
+        }else{
+            $result = "Erreur : Division par zéro";
+        }
 
         dump($result);
-        //on dump $visitEntities que l'on retrouve dans profiller =>last10
-        // dump($commandEntities);
-        return $this->json($result);
+
+        return $this->json(['data' => $result]);
     }
 }

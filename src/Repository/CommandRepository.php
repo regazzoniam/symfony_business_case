@@ -111,6 +111,21 @@ class CommandRepository extends ServiceEntityRepository
         ->getQuery()->getResult();
     }
 
+    public function findCommandWithClientsBetweenDates($minDate, $maxDate){
+
+        //permet de créer un select * from command
+        return $this->createQueryBuilder('c')
+        //ajout d'une fct where qui permet de recup command à partir de sa date (: sert à déclarer des variables)
+        ->innerJoin('c.user','u')
+        ->where('u. > :date_min')
+        ->andWhere('c.createdAt < :date_max')
+        ->andWhere('c.status = 100')
+        //remplacer la variable {{date_min}} & {{date_max}} par mes objets dates
+        ->setParameter('date_min', $minDate)
+        ->setParameter('date_max', $maxDate)
+        //permet d'executer la query afin de recup nos entités
+        ->getQuery()->getResult();
+    }
 
     // /**
     //  * @return Command[] Returns an array of Command objects

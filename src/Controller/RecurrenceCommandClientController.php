@@ -7,7 +7,7 @@ use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
-class AverageBasketAmountController extends AbstractController
+class RecurrenceCommandClientController extends AbstractController
 {
     //on crée des repo pour pouvoir faire des requetes sur la database
     private CommandRepository $commandRepository;
@@ -20,8 +20,8 @@ class AverageBasketAmountController extends AbstractController
     //Request : HttpFoundation\Request
     public function __invoke(Request $request)
     {
-        // pour recupérer un user
-        dump($this->getUser());
+        // // pour recupérer un user
+        // dump($this->getUser());
 
         //création de 2 dates en string
         $minDateString = $request->query->get('min_date');
@@ -36,22 +36,22 @@ class AverageBasketAmountController extends AbstractController
         dump($maxDate);
 
         //on applique la fonction findCommandsBetweenDates() à nos objets date
-        $commandEntities = $this->commandRepository->findAverageBasketAmountBetweenDates($minDate, $maxDate);
+        // $commandEntities = $this->commandRepository->findAverageBasketAmountBetweenDates($minDate, $maxDate);
 
-        $numberOfEntitiesFound = count($commandEntities);
+        // $numberOfEntitiesFound = count($commandEntities);
 
-        $incrementTotalPrice = 0;
+        // $incrementTotalPrice = 0;
 
-        foreach($commandEntities as $commandEntity){
+        // foreach($commandEntities as $commandEntity){
             
-            $incrementTotalPrice += $commandEntity->getTotalPrice();
-        }
+        //     $incrementTotalPrice += $commandEntity->getTotalPrice();
+        // }
 
-        $result = $incrementTotalPrice / $numberOfEntitiesFound;
+        // $result = $incrementTotalPrice / $numberOfEntitiesFound;
 
-        dump($result);
-        //on dump $visitEntities que l'on retrouve dans profiller =>last10
-        // dump($commandEntities);
-        return $this->json($result);
+        // dump($result);
+        // //on dump $visitEntities que l'on retrouve dans profiller =>last10
+        // // dump($commandEntities);
+        // return $this->json($result);
     }
 }

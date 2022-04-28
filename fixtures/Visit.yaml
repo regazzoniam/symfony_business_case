@@ -1,0 +1,3 @@
+App\Entity\Visit:
+  visit{1..6000}:
+    visitedAt: '<dateTimeBetween("-1000 days","now")>'

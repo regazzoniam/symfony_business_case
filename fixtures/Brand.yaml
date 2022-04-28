@@ -1,0 +1,4 @@
+App\Entity\Brand:
+  brand{1..10}:
+    label: '<word()>'
+    imagePath: '<word()>.jpg'

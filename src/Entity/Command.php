@@ -52,11 +52,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
         'method' => 'GET',
         'path' => '/commands/get_percent_conversion_command_from_dates',
         'controller' => PercentConversionCommandController::class],
-        
-    'get_percent_conversion_command_from_dates' => [
+
+    'get_recurrence_command_client_from_dates' => [
         'method' => 'GET',
-        'path' => '/commands/get_percent_conversion_command_from_dates',
-        'controller' => PercentConversionCommandController::class]
+        'path' => '/commands/get_recurrence_command_client_from_dates',
+        'controller' => RecurrenceCommandClientController::class],
     ],
     itemOperations:['GET'],
     normalizationContext: ['groups' => ['groupCommand']]

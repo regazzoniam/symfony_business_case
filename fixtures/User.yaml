@@ -8,7 +8,7 @@ App\Entity\User:
     lastName: 'Capard'
     createdAt: '<dateTimeBetween("-1000 days","now")>'
     adresses: '<numberBetween(1, 2)>x @adress*'
-
+# mdp : test
   user{1..50}:
     email (unique): '<email()>'
     roles: ["ROLE_USER"]

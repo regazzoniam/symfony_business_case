@@ -47,6 +47,21 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+    * @return Product[] Returns an array of Product objects
+    */
+
+    // pour avoir les produits les mieux notés
+        public function bestProducts(int $limit = 4){
+            return $this->createQueryBuilder('p')
+                ->join('p.reviews','r')
+                ->orderBy('r.note', 'DESC')
+                ->setMaxResults($limit)
+                ->getQuery()
+                ->getResult()
+                ;
+        }
+
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */

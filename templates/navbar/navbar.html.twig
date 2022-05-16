@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg fixed-top bg-terracotta">
+    <div class="container-fluid">
+        {# logo #}
+        <a class="navbar-brand navbar-title text-white" href="{{path('app_home')}}" ><img src="{{asset('build/images/logo/logo-blue-110.png')}}" alt="logo">La Nîmes'alerie</a>
+        {# bouton navbar réduite #}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            {# liste item navbar #}
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link navbar-title text-white h2" href="">Chats</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-title text-white h2" href="">Chiens</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-title text-white h2" href=""><i class="fa-solid fa-user"></i> Compte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-title text-white h2" href=""><i class="fa-solid fa-heart"></i> Favoris</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link navbar-title text-white h2" href=""><i class="fa-solid fa-basket-shopping"></i> Panier</a>
+                </li>
+                
+                {# si l'utilisateur est un admin #}
+                 {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link navbar-title text-white h2" href="">Dashboard</a>
+                </li
+                 {% endif %}
+
+            </ul>
+    {# pour logout #}
+    {# {% if app.user %}
+    <div class="nav-item">
+        <a class="nav-link navbar-title text-white h1" href="{{ path('app_logout') }}">
+            <i class="fa-solid fa-user-check"></i>
+        </a>
+    </div> #}
+    {# pour login #}
+    {# {% else %}
+    <div class="nav-item">
+        <a class="nav-link navbar-title text-white h1" href="{{ path('app_login') }}">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    </div>
+    {% endif %} #}
+</nav>

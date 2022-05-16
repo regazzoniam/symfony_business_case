@@ -1,0 +1,31 @@
+body{
+    font-family: $font-p;
+}
+
+.navbar-title {
+    font-family: $font-h;
+}
+  
+.text-title {
+    font-family: $font-h;
+}
+
+.text-subtitle {
+    font-family: $font-h;
+    padding-bottom: 2rem;
+}
+  
+.global-section {
+margin-top: 8rem;
+}
+
+.section{
+padding-top: 4rem;
+padding-bottom: 4rem;
+}
+
+.section.bg-darkgrey{
+    >.text-subtitle {
+        color: $white;
+    }
+}

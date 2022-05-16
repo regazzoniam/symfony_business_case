@@ -1,0 +1,26 @@
+// font
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Poppins:wght@600&display=swap');
+
+// colors
+$white: rgb(255, 255, 255);
+$lightlightgrey: rgb(212, 221, 226);
+$lightblack: rgb(41, 40, 37);
+$darkblack: rgb(36, 35, 32);
+
+$darkgrey: rgb(166, 166, 166);
+$lightgrey: rgb(202, 207, 207);
+$terracotta: rgb(165, 89, 60);
+$pink: rgb(234, 182, 168);
+
+// police
+$font-h: 'Poppins', sans-serif;
+$font-p: 'Lato', sans-serif;
+
+$theme-colors: (
+    "white": $white,
+    "lightgrey": $lightgrey,
+    "darkgrey": $darkgrey,
+    "lightblack": $lightblack,
+    "terracotta": $terracotta,
+    "pink": $pink,
+)

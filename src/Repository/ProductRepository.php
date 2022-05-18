@@ -62,6 +62,11 @@ class ProductRepository extends ServiceEntityRepository
                 ;
         }
 
+    // fonction de pagination
+        public function getQbAll(){
+            return $this->createQueryBuilder('p');
+    }
+    
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */

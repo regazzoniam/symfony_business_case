@@ -1,0 +1,76 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Gestion des produits{% endblock %}
+
+{% block body %}
+    <div class="container text-center">
+        <h1 class="text-center text-title text-terracotta">Liste des produits</h1>
+        {# nombre de produits trouvés #}
+        <div class="container text-green">{{ pagination.getTotalItemCount }} produits trouvés !</div>
+        <div class="container-btn text-center my-4">
+        {# ajouter un produit #}
+        <button type="button" class="btn btn-terracotta">
+            <a class="text-decoration-none" href="{{ path('app_admin_product_add') }}">
+                <i class="fa-solid fa-plus text-white"></i>
+            </a>
+        </button>
+        </div>
+        <table class="table table-lightgrey table-striped">
+            <thead>
+                <tr>
+                    <td class="text-terracotta text-title">Nom</td>
+                    <td class="text-terracotta text-title">Actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                {# on parcours le tableau pagination qui est un select * from product #}
+                {% for product in pagination %}
+                <tr>
+                    <td>
+                        {{ product.label }}
+                    </td>
+                    <td>
+                    {# Voir le détail du produit #}
+                    <button type="button" class="btn">
+                        <a class="text-decoration-none" href="">
+                            <i class="fa-solid fa-eye text-pink"></i>
+                        </a>
+                    </button>
+                    {# modifier le produit #}
+                    <button type="button" class="btn">
+                        <a class="text-decoration-none" href="">
+                            <i class="fa-solid fa-pen text-terracotta"></i>
+                        </a>
+                    </button>
+                    {# supprimer le produit #}
+                    {# <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal_{{ product.id  }}">
+                        <i class="fa-solid fa-minus text-pink"></i>
+                    </button> #}
+                    <!-- Modal -->
+                    {# <div class="modal fade" id="modal_{{ product.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-grey" id="exampleModalLabel">Confirmer la suppression de {{ product.label }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-footer">
+                            <a type="button" class="btn btn-secondary" href="{{ path('app_admin_product_delete', {'slug': product.slug})}}">Oui</a>
+                            <a type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div> #}
+
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination text-terracotta"> 
+        {# pour avoir les buttons des pages #}
+        {{ knp_pagination_render(pagination)}}
+        </div>
+    </div>
+{% endblock %}

@@ -31,9 +31,14 @@ security:
             stateless: true
             jwt: ~
 
-        # main:
-        #     lazy: true
-        #     provider: app_user_provider
+        main:
+            lazy: true
+            provider: app_user_provider
+            custom_authenticator: App\Security\AppCustomAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -43,9 +48,10 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
-    # access_control:
+    access_control:
     #     # l'admin a acces à tout !
-    #     - { path: ^/api, roles: ROLE_ADMIN }
+        # { path: ^/api, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
     #     # Tout le monde a accès à cette route pour pouvoir se connecter
     #     - { path: ^/api/(login_check)|(register), roles: PUBLIC_ACCESS }
 

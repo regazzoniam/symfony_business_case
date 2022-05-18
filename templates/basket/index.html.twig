@@ -1,0 +1,77 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+{# source : https://bbbootstrap.com/snippets/bootstrap-ecommerce-shopping-cart-item-summary-44021562 #}
+<div class="card border-darkgrey my-5 mx-5">
+            <div class="row">
+                <div class="col-lg-6 cart my-5 mx-5">
+                    <div class="title">
+                        <div class="row">
+                            <div class="col text-title text-terracotta"><h4><b>Mon panier</b></h4></div>
+                        </div>
+                    </div>    
+                    <div class="row border-top border-bottom">
+                        <div class="row main align-items-center">
+                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
+                            <div class="col">
+                                <div class="row text-muted">Chat</div>
+                                <div class="row">Croquettes</div>
+                            </div>
+                            <div class="col">
+                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                            </div>
+                            <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                        </div>
+                    </div>
+                    <div class="row border-top border-bottom">
+                        <div class="row main align-items-center">
+                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/ba3tvGm.jpg"></div>
+                            <div class="col">
+                                <div class="row text-muted">Chat</div>
+                                <div class="row">Harnais</div>
+                            </div>
+                            <div class="col">
+                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                            </div>
+                            <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                        </div>
+                    </div>
+                    <div class="row border-top border-bottom">
+                        <div class="row main align-items-center">
+                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/pHQ3xT3.jpg"></div>
+                            <div class="col">
+                                <div class="row text-muted">Chien</div>
+                                <div class="row">Gamelle</div>
+                            </div>
+                            <div class="col">
+                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                            </div>
+                            <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                        </div>
+                    </div>
+                    <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Continuer mon shopping</span></div>
+                </div>
+                <div class="col-lg-3 summary my-5 mx-5">
+                    <div class="text-title text-terracotta"><h5><b>Récapitulatif</b></h5></div>
+                    <div class="row border-top border-bottom">
+                        <div class="col">3 articles</div>
+                        <div class="col text-right">&euro; 132.00</div>
+                    </div>
+                    <form>
+                        <p>Livraison :</p>
+                        <select>
+                            <option class="text-muted">Livraison à domicile- &euro;5.00</option>
+                        </select>
+                    </form>
+                    <div class="row py-2">
+                        <div class="col">Total</div>
+                        <div class="col text-right">&euro; 137.00</div>
+                    </div>
+                    <button class="btn btn-terracotta text-white">Paiement</button>
+                </div>
+            </div>
+            
+</div>
+{% endblock %}

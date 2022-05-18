@@ -10,43 +10,40 @@
             {# liste item navbar #}
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link navbar-title text-white h2" href="">Chats</a>
+                    <a class="nav-link navbar-title text-white h2" href="">Produits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navbar-title text-white h2" href="">Chiens</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-title text-white h2" href=""><i class="fa-solid fa-user"></i> Compte</a>
+                    <a class="nav-link navbar-title text-white h2" href="{{path('app_login')}}"><i class="fa-solid fa-user"></i> Compte</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link navbar-title text-white h2" href=""><i class="fa-solid fa-heart"></i> Favoris</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link navbar-title text-white h2" href=""><i class="fa-solid fa-basket-shopping"></i> Panier</a>
+                    <a class="nav-link navbar-title text-white h2" href="{{path('app_basket')}}"><i class="fa-solid fa-basket-shopping"></i> Panier</a>
                 </li>
                 
                 {# si l'utilisateur est un admin #}
                  {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
-                    <a class="nav-link navbar-title text-white h2" href="">Dashboard</a>
+                    <a class="nav-link navbar-title text-white h2" href="{{path('app_admin')}}">Dashboard</a>
                 </li
                  {% endif %}
 
             </ul>
     {# pour logout #}
-    {# {% if app.user %}
+    {% if app.user %}
     <div class="nav-item">
         <a class="nav-link navbar-title text-white h1" href="{{ path('app_logout') }}">
             <i class="fa-solid fa-user-check"></i>
         </a>
-    </div> #}
+    </div>
     {# pour login #}
-    {# {% else %}
+    {% else %}
     <div class="nav-item">
         <a class="nav-link navbar-title text-white h1" href="{{ path('app_login') }}">
-            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-user-xmark"></i></i>
         </a>
     </div>
-    {% endif %} #}
+    {% endif %}
 </nav>

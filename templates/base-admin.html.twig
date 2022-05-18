@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-terracotta text-title">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">Menu</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="{{ path('app_admin') }}" class="nav-link align-middle px-0 text-white">
+                            <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Accueil</span>
+                        </a>
+                    </li>
+                    {# <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fa-solid fa-gauge-max"></i><span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
+                    </li>#}
+                    <li>
+                        <a href="" class="nav-link px-0 align-middle text-white">
+                            <span class="ms-1 d-none d-sm-inline">Clients</span> 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="nav-link px-0 align-middle text-white"> 
+                            <span class="ms-1 d-none d-sm-inline">Commandes</span> 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="nav-link px-0 align-middle text-white">
+                            <span class="ms-1 d-none d-sm-inline">Catégories</span> 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{path('app_admin_product_all')}}" class="nav-link px-0 align-middle">
+                            <span class="ms-1 d-none d-sm-inline text-white">Produits</span> 
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col py-3">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

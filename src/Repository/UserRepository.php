@@ -79,6 +79,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     }
 
+    // public function findEmailViaInput($datas){
+    //     if($datas['email'] !== null){
+    //         return $this->createQueryBuilder('u')
+    //         //ajout d'une fct where qui permet de vérifier si un mail existe
+    //         ->where('u.email = :email_informed')
+    //         // on remplace le paramètre par le mail renseigné dans le formulaire
+    //         ->setParameter(':email_informed', $datas['email'])
+    //         //permet d'executer la query afin de recup nos entités
+    //         ->getQuery()->getResult();
+    //     }
+    // }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

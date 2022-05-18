@@ -50,7 +50,6 @@ class ProductRepository extends ServiceEntityRepository
     /**
     * @return Product[] Returns an array of Product objects
     */
-
     // pour avoir les produits les mieux notés
         public function bestProducts(int $limit = 4){
             return $this->createQueryBuilder('p')
@@ -61,6 +60,23 @@ class ProductRepository extends ServiceEntityRepository
                 ->getResult()
                 ;
         }
+
+    /**
+    * @return Product[] Returns an array of Product objects
+    */
+    // pour avoir les meilleures ventes
+        public function mostSoldProducts(int $limit = 4){
+            return $this->createQueryBuilder('p')
+                ->select('p','COUNT(c) AS numberCommand')
+                ->join('p.commands','c')
+                ->groupBy('p.id')
+                ->orderBy('numberCommand', 'DESC')
+                ->setMaxResults($limit)
+                ->getQuery()
+                ->getResult()
+                ;
+        }
+
 
     // fonction de pagination
         public function getQbAll(){

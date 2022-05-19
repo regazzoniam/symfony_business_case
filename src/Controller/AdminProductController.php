@@ -15,12 +15,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
+#[Route('/admin/product')]
 class AdminProductController extends AbstractController
 {
     public function __construct(private EntityManagerInterface $em, private ProductRepository $productRepository, private PaginatorInterface $paginator)
     { }
 
-    #[Route('/admin/product/all', name: 'app_admin_product_all')]
+    #[Route('/all', name: 'app_admin_product_all')]
     public function index(Request $request): Response
     {
         $qb = $this->productRepository->getQbAll();
@@ -38,7 +39,7 @@ class AdminProductController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/product/add', name: 'app_admin_product_add')]
+    #[Route('/add', name: 'app_admin_product_add')]
     public function add(Request $request, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(ProductType::class, new Product());

@@ -21,16 +21,8 @@ class BasketController extends AbstractController
         $products = $basketEntity->getProducts();
         // obtenir le nombre de produits dans le panier
         $numberOfProduct = count($products);
-        // mettre à jour le prix total du panier : mettre dans un filtre twig
-        $pricesOfProducts = [];
-        foreach($products as $product){
-            $price = $product->getPrice();
-            array_push($pricesOfProducts, $price);
-        }
-        $totalPrice = array_sum($pricesOfProducts);
-        dump($totalPrice);
+
         // on update le totalPrice de la commande quand on paiera !!
-        // /mettre à jour le prix total du panier
         }
 
         return $this->render('basket/index.html.twig', [

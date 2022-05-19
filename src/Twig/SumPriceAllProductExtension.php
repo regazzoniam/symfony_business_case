@@ -10,10 +10,7 @@ use Twig\TwigFunction;
 
 class SumPriceAllProductExtension extends AbstractExtension
 {
-    public function __construct(private BasketService $basketService)
-    {
-        
-    }
+
     public function getFilters(): array
     {
         return [
@@ -33,8 +30,6 @@ class SumPriceAllProductExtension extends AbstractExtension
 
     public function showSumPriceAllProduct(Command $basketEntity)
     {
-        // $user = $basketEntity->getUser();
-        // $basket $this->basketService->getBasket($user);
         $products = $basketEntity->getProducts();
         $pricesOfProducts = [];
         foreach($products as $product){

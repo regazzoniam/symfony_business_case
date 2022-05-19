@@ -23,7 +23,12 @@ class BasketController extends AbstractController
         $numberOfProduct = count($products);
 
         // on update le totalPrice de la commande quand on paiera !!
+        }else{
+            $basketEntity = NULL;
+            $products = NULL;
+            $numberOfProduct = NULL;
         }
+
 
         return $this->render('basket/index.html.twig', [
             'basketEntity' => $basketEntity,

@@ -1,0 +1,32 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Mes adresses{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+        <div class="row">
+            {# hello personnalisé #}
+            <div class="col-6">
+                <h1 class="text-title text-pink">Bonjour {{ user.firstname }} <i class="fa-solid fa-heart"></i></h1>
+            </div>
+             {# pour logout #}
+            <div class="col-6 text-end">
+                <a class="btn btn-pink text-decoration-none" href="{{ path('app_logout') }}">
+                    Se déconnecter</i>
+                </a>
+            </div>
+            <hr class="text-pink">
+            <div class="col-6">
+                <h1 class="text-title text-terracotta">Commandes</h1>
+            </div>
+            <div class="col-12 profil-content text-start">
+                <ul>
+                    {% for commande in user.commands %}
+                    <li>#{{ commande.numCommand }} passée le {{ commande.createdAt | format_datetime('full', 'none', locale='fr') }} -  &euro;{{ commande.totalPrice }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    {% endblock %}

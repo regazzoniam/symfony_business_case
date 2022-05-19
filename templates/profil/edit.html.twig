@@ -1,0 +1,14 @@
+{% extends 'base-front.html.twig' %}
+{% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body%}
+    <div class="container">
+        <h2 class="text-terracotta text-title">Modifier votre profil</h2>
+        {{ form_start(form)}}
+
+        {{ form_end(form)}}
+    </div>
+{% endblock %}

@@ -99,7 +99,7 @@
                 <div class="col-lg-3 summary my-5 mx-5">
                     <div class="text-title text-terracotta"><h5><b>Récapitulatif</b></h5></div>
                     <div class="row border-top border-bottom">
-                        <div class="col">{{numberOfProduct}} articles</div>
+                        <div class="col">{{products | length}} articles</div>
                         <div class="col text-right">&euro; {{basketEntity | sumPriceAllProduct}}</div>
                     </div>
                     <form>
@@ -112,7 +112,16 @@
                         <div class="col">Total</div>
                         <div class="col text-right">&euro; 137.00</div>
                     </div>
-                    <button class="btn btn-terracotta text-white">Paiement</button>
+                    <form>
+                        <p>Type de paiement :</p>
+                        <select>
+                            <option class="text-muted">Carte bleue</option>
+                            <option class="text-muted">Paypal</option>
+                        </select>
+                    </form>
+                    <div class="row py-2">
+                        <button class="btn btn-terracotta text-white">Paiement</button>
+                    </div>
                 </div>
             </div>
     </div>

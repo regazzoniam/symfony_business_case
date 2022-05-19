@@ -32,18 +32,18 @@
 
             </ul>
     {# pour logout #}
-    {% if app.user %}
+    {# {% if app.user %}
     <div class="nav-item">
         <a class="nav-link navbar-title text-white h1" href="{{ path('app_logout') }}">
-            <i class="fa-solid fa-user-check"></i>
+            <i class="fa-solid fa-user-xmark"></i>
         </a>
-    </div>
+    </div> #}
     {# pour login #}
-    {% else %}
+    {# {% else %}
     <div class="nav-item">
         <a class="nav-link navbar-title text-white h1" href="{{ path('app_login') }}">
-            <i class="fa-solid fa-user-xmark"></i></i>
+            <i class="fa-solid fa-user-check"></i></i>
         </a>
     </div>
-    {% endif %}
+    {% endif %} #}
 </nav>

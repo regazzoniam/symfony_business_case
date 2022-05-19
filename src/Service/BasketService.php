@@ -45,7 +45,7 @@ class BasketService
         if ($user != null){
             $basketEntity = $this->getBasket($user);//on applique la fonction getBasket contenue dans le service BasketService (obtenir les commandes associées à un user qui ont le status = 100) 
             $basketEntity->removeProduct($productEntity);// on supprime un produit à l'entité panier (qui est une commande avec un status 100)
-            $this->em->remove($productEntity);
+            $this->em->persist($basketEntity);
             $this->em->flush();
         }
     }

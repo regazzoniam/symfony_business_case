@@ -3,8 +3,10 @@
 {% block title %}Panier{% endblock %}
 
 {% block body %}
-{# source : https://bbbootstrap.com/snippets/bootstrap-ecommerce-shopping-cart-item-summary-44021562 #}
-<div class="card border-darkgrey my-5 mx-5">
+    {# si un user est bien défini #}
+    {% if app.user %}
+    {# source : https://bbbootstrap.com/snippets/bootstrap-ecommerce-shopping-cart-item-summary-44021562 #}
+    <div class="card border-darkgrey my-5 mx-5">
             <div class="row">
                 <div class="col-lg-6 cart my-5 mx-5">
                     <div class="title">
@@ -12,7 +14,7 @@
                             <div class="col text-title text-terracotta"><h4><b>Mon panier</b></h4></div>
                         </div>
                     </div>    
-                    <div class="row border-top border-bottom">
+                    {# <div class="row border-top border-bottom">
                         <div class="row main align-items-center">
                             <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
                             <div class="col">
@@ -24,8 +26,48 @@
                             </div>
                             <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
                         </div>
-                    </div>
+                    </div> #}
+                    {% for product in products %}
                     <div class="row border-top border-bottom">
+                        <div class="row main align-items-center">
+                            <div class="col-2"><img class="img-fluid" src="{{asset('build/images/products/chien_bandana.jpg')}}" class="card-img-top mx-auto text-white" alt="{{product.label}}"></div>
+                            <div class="col-7">
+                                <div class="row text-muted">
+                                {% for category in product.getCategories %}
+                                    {{category.label}} 
+                                {% endfor %}
+                                </div>
+                                <div class="row">{{product.label}}</div>
+                            </div>
+                            <div class="col">
+                                &euro; {{product.price}} 
+                                {# <span class="close">&#10005;</span> #}
+                            </div>
+                            {# suppression article #}
+                            <div class="col">
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal_{{ product.id  }}">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="modal_{{ product.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-grey" id="exampleModalLabel">Confirmer la suppression de l'article {{ product.label }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" class="btn btn-secondary" href="{{path('app_basket_remove',{'product_id': product.id})}}">Oui</a>
+                                            <a type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Modal -->
+                        </div>
+                    </div>
+                    {# <div class="row border-top border-bottom">
                         <div class="row main align-items-center">
                             <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/ba3tvGm.jpg"></div>
                             <div class="col">
@@ -50,14 +92,15 @@
                             </div>
                             <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
                         </div>
-                    </div>
-                    <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Continuer mon shopping</span></div>
+                    </div> #}
+                    {% endfor %}
+                    <div class="back-to-shop mt-2"><a href="{{path('app_product')}}" class="btn btn-terracotta text-decoration-none"><i class="fa-solid fa-arrow-left-long text-white"></i></a><span class="text-title text-terracotta"> Continuer mon shopping</span></div>
                 </div>
                 <div class="col-lg-3 summary my-5 mx-5">
                     <div class="text-title text-terracotta"><h5><b>Récapitulatif</b></h5></div>
                     <div class="row border-top border-bottom">
-                        <div class="col">3 articles</div>
-                        <div class="col text-right">&euro; 132.00</div>
+                        <div class="col">{{numberOfProduct}} articles</div>
+                        <div class="col text-right">&euro; {{basketEntity | sumPriceAllProduct}}</div>
                     </div>
                     <form>
                         <p>Livraison :</p>
@@ -72,6 +115,17 @@
                     <button class="btn btn-terracotta text-white">Paiement</button>
                 </div>
             </div>
-            
-</div>
+    </div>
+    {# si aucun user n'est pas connecté #}
+    {% else %}
+    <div class="container text-center mt-4">
+        <h2 class="text-title text-terracotta">Votre panier est vide <i class="fa-solid fa-heart-crack text-pink"></i></h2>
+        <h4 class="mb-3 font-weight-normal">Pour récupérer votre commande en cours ...</h4>
+        <a class="btn btn-pink" href="{{path('app_login')}}">
+            Connectez-vous
+        </a>
+    </div>
+    {% endif %}
+
+
 {% endblock %}

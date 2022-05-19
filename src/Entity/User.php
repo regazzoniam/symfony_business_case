@@ -51,7 +51,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     #[ORM\Column(type: 'json')]
-    private $roles = ['ROLE_USER'];
+    // tableau laissé vide car sera défini par le getUser()
+    private $roles = [];
 
     #[ORM\Column(type: 'string')]
     private $password;

@@ -148,7 +148,7 @@ class Command
     private $status;
 
     #[ORM\ManyToOne(targetEntity: Adress::class, inversedBy: 'commands')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[Groups(['groupCommand'])]
     private $adress;
 

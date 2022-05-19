@@ -14,7 +14,7 @@
         </div>
         {# <p> {{get_stars_for_game(game) | raw}}</p> #}
         <div class="btn-container d-flex justify-content-around">
-            <a href="#" class="btn btn-pink"><i class="fa-solid fa-basket-shopping"></i></a>
+            <a href="{{path('app_basket_add',{'product_id': product.id})}}" class="btn btn-pink"><i class="fa-solid fa-basket-shopping"></i></a>
             <a href="#" class="btn btn-pink"><i class="fa-solid fa-heart"></i></a>
         </div>
     </div>

@@ -146,6 +146,23 @@ class CommandRepository extends ServiceEntityRepository
         ->getQuery()->getResult();
     }
 
+
+    public function getBasketByUser($user){
+
+        //permet de créer un select * from command
+        return $this->createQueryBuilder('c')
+        //ajout d'une fct where qui permet de recup command à partir de l'user et du status
+        ->innerJoin('c.user','u')
+        ->where('u = :user')
+        ->andWhere('c.status = :status')
+        //remplacer les variables
+        ->setParameter('user', $user)
+        ->setParameter('status', 100)
+        ->setMaxResults(1)
+        //permet d'executer la query afin de recup notre result (sous forme d'une entité ou null)
+        ->getQuery()->getOneOrNullResult();
+    }
+
     // /**
     //  * @return Command[] Returns an array of Command objects
     //  */

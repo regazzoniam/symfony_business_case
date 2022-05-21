@@ -94,7 +94,7 @@
                         </div>
                     </div> #}
                     {% endfor %}
-                    <div class="back-to-shop mt-2"><a href="{{path('app_product')}}" class="btn btn-terracotta text-decoration-none"><i class="fa-solid fa-arrow-left-long text-white"></i></a><span class="text-title text-terracotta"> Continuer mon shopping</span></div>
+                    <div class="back-to-shop mt-2"><a href="{{path('app_product_all')}}" class="btn btn-terracotta text-decoration-none"><i class="fa-solid fa-arrow-left-long text-white"></i></a><span class="text-title text-terracotta"> Continuer mon shopping</span></div>
                 </div>
                 <div class="col-lg-3 summary my-5 mx-5">
                     <div class="text-title text-terracotta"><h5><b>Récapitulatif</b></h5></div>
@@ -105,12 +105,12 @@
                     <form>
                         <p>Livraison :</p>
                         <select>
-                            <option class="text-muted">Livraison à domicile- &euro;5.00</option>
+                            <option class="text-muted">Livraison à domicile- &euro; 5.00</option>
                         </select>
                     </form>
                     <div class="row py-2">
                         <div class="col">Total</div>
-                        <div class="col text-right">&euro; 137.00</div>
+                        <div class="col text-right">&euro; {{basketEntity | sumPriceAllProduct + 5}}</div>
                     </div>
                     <form>
                         <p>Type de paiement :</p>

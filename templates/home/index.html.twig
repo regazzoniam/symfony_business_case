@@ -37,14 +37,13 @@
 
     <!-- Exclusivity -->
     <section class="bg-darkgrey section section-exclusivity">
-        <h2 class="text-center text-subtitle">Exclusivité</h2>
+        <h2 class="text-center text-subtitle">Exclusivité <i class="fa-solid fa-bolt-lightning text-pink"></i></h2>
         <div class="container text-center">
             <p>
-                Envoyez votre compagnon dans l'espace...
+                Lorem ipsum dolor sit amet, consectelor sit amet,  Nullam tempus ante nisi. Phasellus lectus urna, mollis in imperdiet in, semper et sapien. Phasellus eget elit felis. Suspendisse elementum citae pharetra. Quisque ut ligula in elit imperdiet luctus. Nunc lacinia sem eu nulla venenatis rutrum.
                 <br>
                 <br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus
-                magna fringilla urna, porttitor !
+                Cetur adipiscing elit ut alitor ut aliquam, purus sit amet lu !
             </p>
         </div>
     </section>
@@ -52,7 +51,7 @@
 
     <!-- Services -->
     <section class="section section-services">
-        <h2 class="text-center text-subtitle">Services</h2>
+        <h2 class="text-center text-subtitle">Services <i class="fa-solid fa-hand-holding-hand text-terracotta"></i></h2>
         <div class="container mb-4">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-3">
@@ -98,14 +97,13 @@
 
     <!-- Company -->
     <section class="section section-compagny bg-darkgrey">
-        <h2 class="text-center text-subtitle">Notre histoire</h2>
+        <h2 class="text-center text-subtitle">Notre histoire <i class="fa-solid fa-book text-pink"></i></h2>
         <div class="container text-center">
             <p>
-                Envoyez votre compagnon dans l'espace...
+                Curabitur vitae sollicitudin augue, eget commodo nisi. Duis vitae diam nec nisi malesuada pulvinar eget vitae eros. Quisque non velit sed velit ornare vulputate. Fusce nec risus dolor. Ut lobortis, elit ligula aliquet orci, maximus rhoncus risus augue et ligula. Vestibulum et dui lacinia erat sagittis malesuada. 
                 <br>
                 <br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus
-                magna fringilla urna, porttitor !
+                Aenean mattis ornare aliquam. Nunc tincidunt elit ante, ut iaculis justo condimentum in. Curabitur felis lectus, mollis vitae lectus in, tincidunt posuere turpis. Fusce placerat nec ex sed convallis. Cras eget convallis magna. Nullam eu laoreet tellus. Morbi rutrum vehicula egestas. 
             </p>
         </div>
     </section>
@@ -114,7 +112,7 @@
 
     <!-- Best products -->
     <section class="section section-products">
-        <h2 class="text-center text-subtitle">Nos meilleurs produits</h2>
+        <h2 class="text-center text-subtitle">Nos meilleurs produits <i class="fa-solid fa-star text-terracotta"></i></h2>
         <div class="container">
          <div class="row align-items-center justify-content-between text-center">
                 {% for product in products %}
@@ -122,6 +120,9 @@
                     {% include "product/_card.html.twig" %}
                 </div> 
                 {% endfor %}
+            </div>
+            <div class="btn-container d-flex justify-content-center mt-5">
+                <a href="{{path('app_product_all')}}" class="btn btn-terracotta"> Voir tous les produits</a>
             </div>
         </div>
     </section>

@@ -1,0 +1,21 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Tous les produits pour chats{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2 class="text-center text-terracotta text-title">Les produits pour chats <i class="fa-solid fa-shield-cat"></i></h2>
+        <div class="container my-5">
+            <div class="row align-items-center justify-content-between text-center">
+                {% for product in pagination %}
+                    <div class="col-12 col-md-6 col-lg-3">
+                        {% include "product/_card.html.twig" %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    <div class="pagination text-terracotta">
+        {{ knp_pagination_render(pagination, "@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig") }}
+    </div>
+</div>
+{% endblock %}

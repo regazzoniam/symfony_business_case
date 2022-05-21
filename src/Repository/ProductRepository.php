@@ -83,6 +83,40 @@ class ProductRepository extends ServiceEntityRepository
             return $this->createQueryBuilder('p');
     }
     
+    /**
+    * @return Product[] Returns an array of Product objects
+    */
+    // pour avoir les produits pour chats
+    public function catProducts(){
+        return $this->createQueryBuilder('p')
+            ->select('p','c')
+            ->join('p.categories','c')
+            ->where('c.label LIKE :value')
+            ->setParameter('value', '%Chat%')
+            ->orderBy('p.label', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+        /**
+    * @return Product[] Returns an array of Product objects
+    */
+    // pour avoir les produits pour chats
+    public function dogProducts(){
+        return $this->createQueryBuilder('p')
+            ->select('p','c')
+            ->join('p.categories','c')
+            ->where('c.label LIKE :value')
+            ->setParameter('value', '%Chien%')
+            ->orderBy('p.label', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    
+
+
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */

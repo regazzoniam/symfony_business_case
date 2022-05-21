@@ -1,68 +1,60 @@
 <nav class="navbar navbar-expand-lg fixed-top bg-terracotta">
     <div class="container-fluid">
         {# logo #}
-        <a class="navbar-brand navbar-title text-white" href="{{path('app_home')}}" ><img src="{{asset('build/images/logo/logo-blue-110.png')}}" alt="logo">La Nîmes'alerie</a>
+        <a class="navbar-brand navbar-title text-white" href="{{path('app_home')}}"><img
+                src="{{asset('build/images/logo/logo-blue-110.png')}}" alt="logo">La Nîmes'alerie</a>
         {# bouton navbar réduite #}
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             {# liste item navbar #}
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                    <a href="" class="nav-link navbar-title text-white h3" data-bs-toggle="dropdown"><i class="fa-solid fa-paw"></i> Produits</a>
+                    <a href="" class="nav-link navbar-title text-white h3" data-bs-toggle="dropdown"><i
+                            class="fa-solid fa-paw"></i> Produits</a>
                     <div class="dropdown-menu">
-                        <a href="" class="dropdown-item">Chiens</a>
-                        <a href="#" class="dropdown-item">Chats</a>
+                        <a href="{{path('app_product_dogs')}}" class="dropdown-item">Chiens</a>
+                        <a href="{{path('app_product_cats')}}" class="dropdown-item">Chats</a>
                         <div class="dropdown-divider"></div>
-                        <a href="{{path('app_product')}}" class="dropdown-item">Tous</a>
+                        <a href="{{path('app_product_all')}}" class="dropdown-item">Tous</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="" class="nav-link navbar-title text-white h3" data-bs-toggle="dropdown"><i class="fa-solid fa-user"></i> Compte</a>
+                    <a href="" class="nav-link navbar-title text-white h3" data-bs-toggle="dropdown"><i
+                            class="fa-solid fa-user"></i> Compte</a>
                     <div class="dropdown-menu">
                         {% if app.user %}
                         <a href="{{path('app_profil_index')}}" class="dropdown-item">Mon compte</a>
                         <a href="{{path('app_profil_commands')}}" class="dropdown-item">Mes commandes</a>
                         <div class="dropdown-divider"></div>
-                        <a href="{{path('app_logout')}}"class="dropdown-item">Se déconnecter</a>
+                        <a href="{{path('app_logout')}}" class="dropdown-item">Se déconnecter</a>
                         {% else %}
-                        <a href="{{path('app_login')}}"class="dropdown-item">Se connecter</a>
+                        <a href="{{path('app_login')}}" class="dropdown-item">Se connecter</a>
                         {% endif %}
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navbar-title text-white h3" href="{{path('app_basket')}}"><i class="fa-solid fa-basket-shopping"></i> Panier</a>
+                    <a class="nav-link navbar-title text-white h3" href="{{path('app_basket')}}"><i
+                            class="fa-solid fa-basket-shopping"></i> Panier</a>
                 </li>
                 {# si l'utilisateur est un admin #}
-                 {% if is_granted('ROLE_ADMIN') %}
-                 <li class="nav-item dropdown">
-                    <a href="" class="nav-link navbar-title text-white h3" data-bs-toggle="dropdown"><i class="fa-solid fa-sliders"></i> Dashboard</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item dropdown">
+                    <a href="" class="nav-link navbar-title text-white h3" data-bs-toggle="dropdown"><i
+                            class="fa-solid fa-sliders"></i> Dashboard</a>
                     <div class="dropdown-menu">
                         <a href="" class="dropdown-item">Clients</a>
                         <a href="#" class="dropdown-item">Commandes</a>
-                        <a href="#" class="dropdown-item">Catégories</a>
-                        <a href="#" class="dropdown-item">Produits</a>
+                        <a href="{{path('app_admin_category_index')}}" class="dropdown-item">Catégories</a>
+                        <a href="{{path('app_admin_product_all')}}" class="dropdown-item">Produits</a>
                         <div class="dropdown-divider"></div>
-                        <a href="{{path('app_admin')}}"class="dropdown-item">Accueil</a>
+                        <a href="{{path('app_admin')}}" class="dropdown-item">Accueil</a>
                     </div>
                 </li>
-                 {% endif %}
-
+                {% endif %}
             </ul>
-    {# pour logout #}
-    {# {% if app.user %}
-    <div class="nav-item">
-        <a class="nav-link navbar-title text-white h1" href="{{ path('app_logout') }}">
-            <i class="fa-solid fa-user-xmark"></i>
-        </a>
-    </div> #}
-    {# pour login #}
-    {# {% else %}
-    <div class="nav-item">
-        <a class="nav-link navbar-title text-white h1" href="{{ path('app_login') }}">
-            <i class="fa-solid fa-user-check"></i></i>
-        </a>
+        </div>
     </div>
-    {% endif %} #}
 </nav>

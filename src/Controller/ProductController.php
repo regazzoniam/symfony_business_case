@@ -60,13 +60,4 @@ class ProductController extends AbstractController
             'pagination' => $pagination
         ]);
     }
-    // #[Route('/cats', name: 'app_product_cats')]
-    // public function cats(): Response
-    // {
-    //     $catsProducts = $this->productRepository->catProducts();
-    //     dump($catsProducts);
-    //     return $this->render('product/cats.html.twig', [
-    //         'catsProducts' => $catsProducts
-    //     ]);
-    // }
 }

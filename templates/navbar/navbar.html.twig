@@ -27,6 +27,7 @@
                     <div class="dropdown-menu">
                         {% if app.user %}
                         <a href="{{path('app_profil_index')}}" class="dropdown-item">Mon compte</a>
+                        <a href="{{path('app_profil_adresses')}}" class="dropdown-item">Mes adresses</a>                        
                         <a href="{{path('app_profil_commands')}}" class="dropdown-item">Mes commandes</a>
                         <div class="dropdown-divider"></div>
                         <a href="{{path('app_logout')}}" class="dropdown-item">Se déconnecter</a>
@@ -46,7 +47,7 @@
                             class="fa-solid fa-sliders"></i> Dashboard</a>
                     <div class="dropdown-menu">
                         <a href="" class="dropdown-item">Clients</a>
-                        <a href="#" class="dropdown-item">Commandes</a>
+                        <a href="{{path('app_admin_command_index')}}" class="dropdown-item">Commandes</a>
                         <a href="{{path('app_admin_category_index')}}" class="dropdown-item">Catégories</a>
                         <a href="{{path('app_admin_product_all')}}" class="dropdown-item">Produits</a>
                         <div class="dropdown-divider"></div>

@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Adress;
+use App\Form\AdressType;
 use App\Form\ProfilType;
+use App\Repository\AdressRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,10 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/profil')]
 class ProfilController extends AbstractController
 {
-    public function __construct(private UserRepository $userRepository, private EntityManagerInterface $em){ }
+    public function __construct(private UserRepository $userRepository, private AdressRepository $adressRepository , private EntityManagerInterface $em){ }
 
     #[Route('/', name: 'app_profil_index')]
-    public function index(Request $request): Response
+    public function index(): Response
     {
         $user = $this->getUser() ;
 
@@ -26,7 +29,7 @@ class ProfilController extends AbstractController
     }
 
     #[Route('/commands', name: 'app_profil_commands')]
-    public function showCommand(Request $request): Response
+    public function showCommand(): Response
     {
         $user = $this->getUser() ;
 
@@ -49,6 +52,48 @@ class ProfilController extends AbstractController
         }
 
         return $this->render('profil/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/adresses', name: 'app_profil_adresses')]
+    public function showAdresses(): Response
+    {
+        $user = $this->getUser() ;
+
+        return $this->render('profil/showAdresses.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    #[Route('/adresses/delete/{id}', name: 'app_profil_adresses_delete')]
+    public function adressesDelete($id): Response
+    {
+        $adress = $this->adressRepository->find($id) ;
+        $this->em->remove($adress);
+        $this->em->flush();
+
+        return $this->redirectToRoute('app_profil_adresses');
+    }
+    #[Route('/adresses/add', name: 'app_profil_adresses_add')]
+    public function adressesAdd(Request $request): Response
+    {
+        $user = $this->getUser() ;
+        $adress = new Adress();
+        $adress->addUser($user);
+        //set user avec get user
+
+        $form = $this->createForm(AdressType::class, $adress);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $adress = $form->getData();
+            $this->em->persist($adress);
+            $this->em->flush();
+            return $this->redirectToRoute('app_profil_adresses');
+        }
+
+        return $this->render('profil/adresses_add.html.twig', [
             'form' => $form->createView(),
         ]);
     }

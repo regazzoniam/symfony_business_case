@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_admin_command_delete', {'id': command.id}) }}" onsubmit="return confirm('Confirmer la suppression de cette commande ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ command.id) }}">
+    <button class="btn btn-pink">Supprimer</button>
+</form>

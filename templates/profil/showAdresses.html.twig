@@ -17,14 +17,42 @@
             </div>
             <hr class="text-pink">
             <div class="col-6">
-                <h1 class="text-title text-terracotta">Commandes</h1>
+                <h1 class="text-title text-terracotta">Adresses enregistrées</h1>
             </div>
             <div class="col-12 profil-content text-start">
                 <ul>
-                    {% for commande in user.commands %}
-                    <li>#{{ commande.numCommand }} passée le {{ commande.createdAt | format_datetime('full', 'none', locale='fr') }} -  &euro;{{ commande.totalPrice }}</li>
+                    {% for adress in user.adresses %}
+                    <li>
+                        {{ adress.streetNumber }} {{ adress.streetName }} {{ adress.city.cp }} {{ adress.city.name }}
+                        {# suppression adresse #}
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal_{{ adress.id  }}">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal_{{ adress.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-grey" id="exampleModalLabel">Confirmer la suppression de l'adresse : {{ adress.streetNumber }} {{ adress.streetName }} {{ adress.city.cp }} {{ adress.city.name }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-footer">
+                                    <a type="button" class="btn btn-secondary" href="{{path('app_profil_adresses_delete',{'id': adress.id})}}">Oui</a>
+                                    <a type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Modal -->
                     {% endfor %}
                 </ul>
+                <div class="container-btn text-center my-4">
+                {# ajouter une adresse #}
+                    <a class="text-decoration-none btn btn-terracotta text-white" href="{{ path('app_profil_adresses_add')}}">
+                        <i class="fa-solid fa-plus"></i> Ajouter une adresse
+                    </a>
+                </div>
             </div>
         </div>
 

@@ -1,0 +1,11 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Nouvelle commande{% endblock %}
+
+{% block body %}
+    <h1 class="text-title text-terracotta">Créer une commande</h1>
+
+    {{ include('admin_command/_form.html.twig') }}
+
+            <a class="text-decoration-none btn btn-terracotta" href="{{ path('app_admin_command_index') }}"><i class="fa-solid fa-arrow-left-long text-white"></i> Retour à la liste</a>
+{% endblock %}

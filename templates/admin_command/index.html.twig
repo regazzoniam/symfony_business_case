@@ -1,0 +1,46 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Liste des commandes{% endblock %}
+
+{% block body %}
+    <h1 class="text-title text-terracotta">Liste des commandes</h1>
+
+    <table class="table">
+        <thead class="text-terracotta">
+            <tr>
+                <th>Id</th>
+                <th>Prix total</th>
+                <th>#</th>
+                <th>Date de création</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for command in pagination %}
+            <tr>
+                <td>{{ command.id }}</td>
+                <td>{{ command.totalPrice }}</td>
+                <td>{{ command.numCommand }}</td>
+                <td>{{ command.createdAt ? command.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ command.status }}</td>
+                <td>
+                    <a href="{{ path('app_admin_command_show', {'id': command.id}) }}"><i class="fa-solid fa-eye text-pink"></i></a>
+                    <a href="{{ path('app_admin_command_edit', {'id': command.id}) }}"><i class="fa-solid fa-pen text-pink"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune commande trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination text-terracotta">
+        {{ knp_pagination_render(pagination, "@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig") }}
+    </div>
+
+    <a class="text-decoration-none btn btn-terracotta" href="{{ path('app_admin_command_new') }}">
+    <i class="fa-solid fa-plus text-white"></i> Créer</a>
+{% endblock %}

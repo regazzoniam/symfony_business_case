@@ -163,6 +163,11 @@ class CommandRepository extends ServiceEntityRepository
         ->getQuery()->getOneOrNullResult();
     }
 
+    // fonction de pagination
+    public function getQbAll(){
+        return $this->createQueryBuilder('c');
+    }
+
     // /**
     //  * @return Command[] Returns an array of Command objects
     //  */

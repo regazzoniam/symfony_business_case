@@ -37,12 +37,6 @@
                     <div class="text-title text-terracotta">Email :</div>
                     <span> {{ user.email }}</span>
                 </div>
-                <p class="text-title text-terracotta">Adresses : </p>
-                <ul>
-                    {% for adress in user.adresses %}
-                    <li>{{ adress.streetNumber }} {{ adress.streetName }} {{ adress.city.cp }} {{ adress.city.name }}</li>
-                    {% endfor %}
-                </ul>
             </div>
         </div>
 

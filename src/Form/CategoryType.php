@@ -22,6 +22,7 @@ class CategoryType extends AbstractType
                 ]
             ])
             ->add('categoryParent', EntityType::class, [
+                'label'=>'Catégorie parent',
                 'class'=> Category::class,
                 'choice_label'=>'label',
                 // on fait une query pour filtrer uniquement les catégories enfants (pas Chat ni Chien)

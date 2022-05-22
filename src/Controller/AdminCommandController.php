@@ -28,9 +28,6 @@ class AdminCommandController extends AbstractController
         return $this->render('admin_command/index.html.twig', [
             'pagination' => $pagination,
         ]);
-        // return $this->render('admin_command/index.html.twig', [
-        //     'commands' => $commandRepository->findAll(),
-        // ]);
     }
 
     #[Route('/new', name: 'app_admin_command_new', methods: ['GET', 'POST'])]

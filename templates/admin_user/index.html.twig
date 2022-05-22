@@ -1,0 +1,48 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+    <h1 class="text-title text-terracotta">Liste des utilisateurs</h1>
+
+    <table class="table">
+        <thead class="text-terracotta">
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Rôles</th>
+                {# <th>Mot de passe</th> #}
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Date de création</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in pagination %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                {# <td>{{ user.password }}</td> #}
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_admin_user_show', {'id': user.id}) }}"><i class="fa-solid fa-eye text-pink"></i></a>
+                    <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}"><i class="fa-solid fa-pen text-pink"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucune commande trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination text-terracotta">
+        {{ knp_pagination_render(pagination, "@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig") }}
+    </div>
+    <a class="text-decoration-none btn btn-terracotta" href="{{ path('app_admin_user_new') }}">
+    <i class="fa-solid fa-plus text-white"></i> Créer</a>
+{% endblock %}

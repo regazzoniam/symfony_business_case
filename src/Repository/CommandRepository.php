@@ -165,7 +165,9 @@ class CommandRepository extends ServiceEntityRepository
 
     // fonction de pagination
     public function getQbAll(){
-        return $this->createQueryBuilder('c');
+        return $this->createQueryBuilder('c')
+        ->orderBy('c.createdAt','DESC')
+        ->getQuery()->getResult();
     }
 
     // /**

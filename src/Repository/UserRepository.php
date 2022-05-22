@@ -79,6 +79,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     }
 
+    // fonction de pagination
+    public function getQbAll(){
+        return $this->createQueryBuilder('u')
+        ->orderBy('u.id')
+        ->getQuery()->getResult();
+    }
+
     // public function findEmailViaInput($datas){
     //     if($datas['email'] !== null){
     //         return $this->createQueryBuilder('u')

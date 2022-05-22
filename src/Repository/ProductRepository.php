@@ -80,7 +80,9 @@ class ProductRepository extends ServiceEntityRepository
 
     // fonction de pagination
         public function getQbAll(){
-            return $this->createQueryBuilder('p');
+            return $this->createQueryBuilder('p')
+            ->orderBy('p.id')
+            ->getQuery()->getResult();
     }
     
     /**

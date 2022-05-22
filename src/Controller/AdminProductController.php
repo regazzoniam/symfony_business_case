@@ -15,13 +15,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
+// CRUD réalisé manuellement
+
 #[Route('/admin/product')]
 class AdminProductController extends AbstractController
 {
     public function __construct(private EntityManagerInterface $em, private ProductRepository $productRepository, private PaginatorInterface $paginator)
     { }
-
-    #[Route('/all', name: 'app_admin_product_all')]
+// tous
+    #[Route('/all', name: 'app_admin_product_index')]
     public function index(Request $request): Response
     {
         $qb = $this->productRepository->getQbAll();
@@ -31,15 +33,15 @@ class AdminProductController extends AbstractController
             // 2eme argument : sur quel page se trouve (1: page par défaut)
             $request->query->getInt('page',1),
             // 3eme argument : nombre de résultats par page
-            5
+            20
         );
 
         return $this->render('admin_product/index.html.twig', [
             'pagination' => $pagination,
         ]);
     }
-
-    #[Route('/add', name: 'app_admin_product_add')]
+// nouveau
+    #[Route('/new', name: 'app_admin_product_new')]
     public function add(Request $request, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(ProductType::class, new Product());
@@ -74,11 +76,51 @@ class AdminProductController extends AbstractController
             }
             $this->em->persist($product);
             $this->em->flush();
-            return $this->redirectToRoute('app_admin_product_all');
+            return $this->redirectToRoute('app_admin_product_index');
         }
 
-        return $this->render('admin_product/add.html.twig', [
+        return $this->render('admin_product/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
+// editer
+    #[Route('/edit/{id}', name: 'app_admin_product_edit')]
+    public function edit($id, Request $request): Response
+    {
+        $productEntity = $this->productRepository->findOneBy(['id' => $id]) ;
+
+        $form = $this->createForm(ProductType::class, $productEntity);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $this->em->flush();
+            return $this->redirectToRoute('app_admin_product_index');
+        }
+
+        return $this->render('admin_product/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+// details
+    #[Route('/show/{id}', name: 'app_admin_product_show')]
+    public function show($id): Response
+    {
+        $productEntity = $this->productRepository->findOneBy(['id' => $id]) ;
+
+        return $this->render('admin_product/show.html.twig', [
+            'product' => $productEntity
+        ]);
+    }
+// suppression
+    #[Route('/delete/{id}', name: 'app_admin_product_delete')]
+    public function delete($id): Response
+    {
+        $productEntity = $this->productRepository->findOneBy(['id' => $id]) ;
+
+        $this->em->remove($productEntity);
+        $this->em->flush();
+
+        return $this->redirectToRoute('app_admin_product_index');
+    }
+    
 }

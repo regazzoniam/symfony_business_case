@@ -108,6 +108,14 @@
                             <option class="text-muted">Livraison à domicile- &euro; 5.00</option>
                         </select>
                     </form>
+                    <form>
+                        <p>Adresse de livraison :</p>
+                        <select>
+                        {% for adresse in basketEntity.user.adresses %}
+                            <option class="text-muted">{{adresse.streetNumber}} {{adresse.streetName}}</option>
+                        {% endfor %}
+                        </select>
+                    </form>
                     <div class="row py-2">
                         <div class="col">Total</div>
                         <div class="col text-right">&euro; {{basketEntity | sumPriceAllProduct + 5}}</div>
@@ -119,8 +127,17 @@
                             <option class="text-muted">Paypal</option>
                         </select>
                     </form>
-                    <div class="row py-2">
-                        <button class="btn btn-terracotta text-white">Paiement</button>
+                    <div class="col py-2">
+                        <a class="btn btn-terracotta text-white" href="{{path('app_basket_payment')}}">Payer</a>
+                    </div>
+                    <div class="col py-2">
+                        <a class="btn btn-pink" href="{{path('app_basket_payment_send')}}">Payer et expédier</a>
+                    </div>
+                    <div class="col py-2">
+                        <a class="btn btn-terracotta text-white" href="{{path('app_basket_payment_refund')}}">Payer et rembourser</a>
+                    </div>
+                    <div class="col py-2">
+                        <a class="btn btn-pink" href="{{path('app_basket_payment_cancel')}}">Payer et annuler</a>
                     </div>
                 </div>
             </div>

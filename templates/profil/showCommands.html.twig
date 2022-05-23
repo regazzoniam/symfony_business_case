@@ -22,7 +22,17 @@
             <div class="col-12 profil-content text-start">
                 <ul>
                     {% for commande in user.commands %}
-                    <li>#{{ commande.numCommand }} passée le {{ commande.createdAt | format_datetime('full', 'none', locale='fr') }} -  &euro;{{ commande.totalPrice }}</li>
+                    <li>
+                        Commande #{{ commande.numCommand }} 
+                        passée le {{ commande.createdAt | format_datetime('full', 'none', locale='fr') }} 
+                        -  &euro;{{ commande.totalPrice }}
+                        -
+                        {% if commande.status == 100 %}Non validée{% endif %}
+                        {% if commande.status == 200 %}Payée{% endif %}
+                        {% if commande.status == 300 %}Expédiée{% endif %}
+                        {% if commande.status == 400 %}Remboursée{% endif %}
+                        {% if commande.status == 500 %}Annulée{% endif %}
+                    </li>
                     {% endfor %}
                 </ul>
             </div>

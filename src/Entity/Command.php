@@ -92,7 +92,7 @@ class Command
     #[Groups(['groupAdress','groupCommand','groupProduct','groupUser'])]
     private $totalPrice;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'string')]
     #[  Assert\NotNull(
         message: 'Le numéro de commande doit être renseigné',
     ),
@@ -183,12 +183,12 @@ class Command
         return $this;
     }
 
-    public function getNumCommand(): ?int
+    public function getNumCommand(): ?string
     {
         return $this->numCommand;
     }
 
-    public function setNumCommand(int $numCommand): self
+    public function setNumCommand(string $numCommand): self
     {
         $this->numCommand = $numCommand;
 

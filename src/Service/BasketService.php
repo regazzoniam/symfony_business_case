@@ -24,7 +24,7 @@ class BasketService
             $basketEntity->setStatus(100);//avec le status = 100 (panier)
             $basketEntity->setUser($user);//on lui associe le user passé en paramètre
             $basketEntity->setTotalPrice(0);//on lui définit un totalPrice à 0 car le panier vient d'être créé
-            $basketEntity->setNumCommand((int)uniqid());//on définit un numéro de commande (série de chiffres aléatoire)
+            $basketEntity->setNumCommand(uniqid());//on définit un numéro de commande (série de chiffres aléatoire)
             $basketEntity->setCreatedAt(new DateTime());//on définit une date de commande
             $this->em->persist($basketEntity);
             $this->em->flush();

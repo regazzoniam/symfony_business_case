@@ -11,7 +11,6 @@
                 <th>Id</th>
                 <th>Email</th>
                 <th>Rôles</th>
-                {# <th>Mot de passe</th> #}
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Date de création</th>
@@ -24,10 +23,9 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                {# <td>{{ user.password }}</td> #}
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('d/m/Y H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('app_admin_user_show', {'id': user.id}) }}"><i class="fa-solid fa-eye text-pink"></i></a>
                     <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}"><i class="fa-solid fa-pen text-pink"></i></a>

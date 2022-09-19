@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/category')]
 class AdminCategoryController extends AbstractController
 {
+    // Voir toutes les catégories
     #[Route('/', name: 'app_admin_category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
@@ -20,7 +21,7 @@ class AdminCategoryController extends AbstractController
             'categories' => $categoryRepository->findAll(),
         ]);
     }
-
+    // Créer une nouvelle catégorie
     #[Route('/new', name: 'app_admin_category_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CategoryRepository $categoryRepository): Response
     {
@@ -38,7 +39,7 @@ class AdminCategoryController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    // Voir en détail une catégorie
     #[Route('/{id}', name: 'app_admin_category_show', methods: ['GET'])]
     public function show(Category $category): Response
     {
@@ -46,7 +47,7 @@ class AdminCategoryController extends AbstractController
             'category' => $category,
         ]);
     }
-
+    // Modifier une catégorie
     #[Route('/{id}/edit', name: 'app_admin_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, CategoryRepository $categoryRepository): Response
     {
@@ -63,7 +64,7 @@ class AdminCategoryController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    // Supprimer une catégorie
     #[Route('/{id}', name: 'app_admin_category_delete', methods: ['POST'])]
     public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
     {

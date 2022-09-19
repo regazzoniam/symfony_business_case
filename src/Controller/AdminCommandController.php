@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/command')]
 class AdminCommandController extends AbstractController
 {
+    // Voir toutes les commandes
     #[Route('/', name: 'app_admin_command_index', methods: ['GET'])]
     public function index(CommandRepository $commandRepository, PaginatorInterface $paginator, Request $request): Response
     {
@@ -29,7 +30,7 @@ class AdminCommandController extends AbstractController
             'pagination' => $pagination,
         ]);
     }
-
+    // Créer une commande
     #[Route('/new', name: 'app_admin_command_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CommandRepository $commandRepository): Response
     {
@@ -50,7 +51,7 @@ class AdminCommandController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    // Voir en détail une commande
     #[Route('/{id}', name: 'app_admin_command_show', methods: ['GET'])]
     public function show(Command $command): Response
     {
@@ -58,7 +59,7 @@ class AdminCommandController extends AbstractController
             'command' => $command,
         ]);
     }
-
+    // Modifier une commande
     #[Route('/{id}/edit', name: 'app_admin_command_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Command $command, CommandRepository $commandRepository): Response
     {
@@ -75,7 +76,7 @@ class AdminCommandController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    // Supprimer une commande
     #[Route('/{id}', name: 'app_admin_command_delete', methods: ['POST'])]
     public function delete(Request $request, Command $command, CommandRepository $commandRepository): Response
     {

@@ -14,19 +14,6 @@
                             <div class="col text-title text-terracotta"><h4><b>Mon panier</b></h4></div>
                         </div>
                     </div>    
-                    {# <div class="row border-top border-bottom">
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
-                            <div class="col">
-                                <div class="row text-muted">Chat</div>
-                                <div class="row">Croquettes</div>
-                            </div>
-                            <div class="col">
-                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                            </div>
-                            <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                        </div>
-                    </div> #}
                     {% for product in products %}
                     <div class="row border-top border-bottom">
                         <div class="row main align-items-center">
@@ -41,7 +28,6 @@
                             </div>
                             <div class="col">
                                 &euro; {{product.price}} 
-                                {# <span class="close">&#10005;</span> #}
                             </div>
                             {# suppression article #}
                             <div class="col">
@@ -67,32 +53,6 @@
                             <!-- /Modal -->
                         </div>
                     </div>
-                    {# <div class="row border-top border-bottom">
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/ba3tvGm.jpg"></div>
-                            <div class="col">
-                                <div class="row text-muted">Chat</div>
-                                <div class="row">Harnais</div>
-                            </div>
-                            <div class="col">
-                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                            </div>
-                            <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                        </div>
-                    </div>
-                    <div class="row border-top border-bottom">
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/pHQ3xT3.jpg"></div>
-                            <div class="col">
-                                <div class="row text-muted">Chien</div>
-                                <div class="row">Gamelle</div>
-                            </div>
-                            <div class="col">
-                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                            </div>
-                            <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                        </div>
-                    </div> #}
                     {% endfor %}
                     <div class="back-to-shop mt-2"><a href="{{path('app_product_all')}}" class="btn btn-terracotta text-decoration-none"><i class="fa-solid fa-arrow-left-long text-white"></i></a><span class="text-title text-terracotta"> Continuer mon shopping</span></div>
                 </div>

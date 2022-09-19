@@ -50,13 +50,18 @@ class ProductRepository extends ServiceEntityRepository
     /**
     * @return Product[] Returns an array of Product objects
     */
-    // pour avoir les produits les mieux notés
+    // pour avoir les 4 produits les mieux notés
         public function bestProducts(int $limit = 4){
             return $this->createQueryBuilder('p')
+                // jointure pour pouvoir intéragir avec les ptés de l'entité renviews
                 ->join('p.reviews','r')
+                // trie par ordre décroisssant le nom des produits récupérés
                 ->orderBy('r.note', 'DESC')
+                // limiter les résultats à 4
                 ->setMaxResults($limit)
+                // transformer la requête DQL en SQL
                 ->getQuery()
+                // éxécuter la requête
                 ->getResult()
                 ;
         }
@@ -92,11 +97,17 @@ class ProductRepository extends ServiceEntityRepository
     public function catProducts(){
         return $this->createQueryBuilder('p')
             ->select('p','c')
+            // jointure pour pouvoir intéragir avec les ptés de l'entité categories
             ->join('p.categories','c')
+            // condition sur le label de la catégorie - requête préparée avec marqueur nommé
             ->where('c.label LIKE :value')
+            // remplace marqueur nommé par sa valeur
             ->setParameter('value', '%Chat%')
+            // trie par ordre croissant
             ->orderBy('p.label', 'ASC')
+            // transformer la requête DQL en SQL
             ->getQuery()
+            // éxécuter la requête
             ->getResult()
             ;
     }
@@ -104,7 +115,7 @@ class ProductRepository extends ServiceEntityRepository
         /**
     * @return Product[] Returns an array of Product objects
     */
-    // pour avoir les produits pour chats
+    // pour avoir les produits pour chiens
     public function dogProducts(){
         return $this->createQueryBuilder('p')
             ->select('p','c')

@@ -1,12 +1,13 @@
 {% extends 'base-admin.html.twig' %}
+{# appel du template BS permettant une mise en forme du formulaire #}
 {% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
 
-{% block title %}
-{% endblock %}
+{% block title %}Nouveau produit{% endblock %}
 
 {% block body%}
     <div class="container">
         <h2 class="text-terracotta text-title">Ajouter un produit</h2>
+        {# Appel au formulaire permettant de créer un produit #}
         {{ form_start(form)}}
 
         {{ form_end(form)}}

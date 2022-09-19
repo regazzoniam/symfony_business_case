@@ -20,9 +20,9 @@
         {% for command in pagination %}
             <tr>
                 <td>{{ command.id }}</td>
-                <td>{{ command.totalPrice }}</td>
+                <td>{{ command.totalPrice }}€</td>
                 <td>{{ command.numCommand }}</td>
-                <td>{{ command.createdAt ? command.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ command.createdAt ? command.createdAt|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ command.status }}</td>
                 <td>
                     <a href="{{ path('app_admin_command_show', {'id': command.id}) }}"><i class="fa-solid fa-eye text-pink"></i></a>

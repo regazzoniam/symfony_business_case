@@ -1,13 +1,16 @@
+{# On se base sur le template de mise en forme 'base-admin' #}
 {% extends 'base-admin.html.twig' %}
-
-{% block title %}Gestion des produits{% endblock %}
-
+{# Définition du titre de la page #}
+{% block title %}Liste des produits{% endblock %}
+{# Définition du h1 #}
 {% block body %}
     <h1 class="text-title text-terracotta">Liste des produits</h1>
-
+    {# Tableau listant les propriétés importantes des produits #}
     <table class="table">
+        {# Entête du tableau #}
         <thead class="text-terracotta">
             <tr>
+                {# Titre des colonnes #}
                 <th>Id</th>
                 <th>Titre</th>
                 <th>Prix</th>
@@ -16,38 +19,49 @@
                 <th>Actions</th>
             </tr>
         </thead>
+        {# Corps du tableau #}
         <tbody>
+        {# Mise en place de la pagination #}
         {% for product in pagination %}
             <tr>
+                {# Titre des colonnes #}
                 <td>{{ product.id }}</td>
                 <td>{{ product.label }}</td>
-                <td>{{ product.price }}</td>
+                <td>{{ product.price }}€</td>
                 <td>{{ product.stock }}</td>
                 <td>{{ product.isActif }}</td>
                 <td>
+                    {# voir le produit #}
                     <a class="btn btn-white" href="{{ path('app_admin_product_show', {'id': product.id}) }}"><i class="fa-solid fa-eye text-pink"></i></a>
+                    {# modifier le produit #}
                     <a class="btn btn-white" href="{{ path('app_admin_product_edit', {'id': product.id}) }}"><i class="fa-solid fa-pen text-pink"></i></a>
                     {# supprimer le produit #}
                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal_{{ product.id  }}">
                         <i class="fa-solid fa-minus text-pink"></i>
                     </button>
-                    <!-- Modal -->
+                    <!-- BOF Modal - Validation suppression -->
                     <div class="modal fade" id="modal_{{ product.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-grey" id="exampleModalLabel">Confirmer la suppression de {{ product.label }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-footer">
-                            <a type="button" class="btn btn-secondary" href="{{ path('app_admin_product_delete', {'id': product.id})}}">Oui</a>
-                            <a type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
-                        </div>
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    {# Titre de la modale #}
+                                    <h5 class="modal-title text-grey" id="exampleModalLabel">Confirmer la suppression de {{ product.label }}</h5>
+                                    {# Fermer la modale #}
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-footer">
+                                    {# Confirmation #}
+                                    <a type="button" class="btn btn-secondary" href="{{ path('app_admin_product_delete', {'id': product.id})}}">Oui</a>
+                                    {# Annulation #}
+                                    <a type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </div>
+                    <!-- EOF Modal - Validation suppression -->
                 </td>
             </tr>
+        {# si aucun produit #}
         {% else %}
             <tr>
                 <td colspan="6">Aucun produit trouvé</td>
@@ -55,11 +69,11 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {# Pagination avec Knp Paginator #}
     <div class="pagination text-terracotta">
         {{ knp_pagination_render(pagination, "@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig") }}
     </div>
-
+    {# ajouter un produit #}
     <a class="text-decoration-none btn btn-terracotta" href="{{ path('app_admin_product_new') }}">
     <i class="fa-solid fa-plus text-white"></i> Créer</a>
 {% endblock %}

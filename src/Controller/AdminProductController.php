@@ -22,7 +22,7 @@ class AdminProductController extends AbstractController
 {
     public function __construct(private EntityManagerInterface $em, private ProductRepository $productRepository, private PaginatorInterface $paginator)
     { }
-// tous
+// Voir tous les produits
     #[Route('/all', name: 'app_admin_product_index')]
     public function index(Request $request): Response
     {
@@ -40,7 +40,7 @@ class AdminProductController extends AbstractController
             'pagination' => $pagination,
         ]);
     }
-// nouveau
+// Créer un nouveau produit
     #[Route('/new', name: 'app_admin_product_new')]
     public function add(Request $request, SluggerInterface $slugger): Response
     {
@@ -83,7 +83,7 @@ class AdminProductController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-// editer
+// Modifier un produit
     #[Route('/edit/{id}', name: 'app_admin_product_edit')]
     public function edit($id, Request $request): Response
     {
@@ -101,7 +101,7 @@ class AdminProductController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-// details
+// Voir en détail un produit
     #[Route('/show/{id}', name: 'app_admin_product_show')]
     public function show($id): Response
     {
@@ -111,7 +111,7 @@ class AdminProductController extends AbstractController
             'product' => $productEntity
         ]);
     }
-// suppression
+// Supprimer un produit
     #[Route('/delete/{id}', name: 'app_admin_product_delete')]
     public function delete($id): Response
     {

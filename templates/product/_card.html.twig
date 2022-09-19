@@ -12,7 +12,6 @@
             <p class="text-white text-title">{{product.label | capitalize}}</p>
             <p class="text-green text-title">{{product.price}}€</p>
         </div>
-        {# <p> {{get_stars_for_game(game) | raw}}</p> #}
         <div class="btn-container justify-content-center">
             <a href="{{path('app_basket_add',{'product_id': product.id})}}" class="btn btn-pink"><i class="fa-solid fa-basket-shopping"></i></a>
         </div>
